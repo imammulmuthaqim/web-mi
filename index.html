@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Digital Ultimate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <style>
+        /* ---
+        SECTION 1: Global Variables & Themes (approx. 100 lines)
+        --- */
+        :root {
+            --font-family-primary: 'Poppins', sans-serif;
+            --font-family-secondary: 'Roboto', sans-serif;
+            --border-radius-sm: 0.3rem;
+            --border-radius-md: 0.6rem;
+            --border-radius-lg: 1.2rem;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+            --transition-fast: 0.2s ease-in-out;
+            --transition-slow: 0.4s ease-in-out;
+        }
+
+        .theme-light {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-main: #f8f9fa;
+            --background-surface: #ffffff;
+            --background-offset: #f1f3f5;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #0dcaf0;
+        }
+
+        .theme-dark {
+            --primary-color: #0d6efd;
+            --secondary-color: #adb5bd;
+            --background-main: #121212;
+            --background-surface: #1e1e1e;
+            --background-offset: #2c2c2c;
+            --text-primary: #e9ecef;
+            --text-secondary: #adb5bd;
+            --border-color: #495057;
+            --success-color: #198754;
+            --danger-color: #d9534f;
+            --warning-color: #f0ad4e;
+            --info-color: #3dd5f3;
+        }
+
+        .theme-ocean {
+            --primary-color: #006994;
+            --secondary-color: #87ceeb;
+            --background-main: #f0f8ff;
+            --background-surface: #ffffff;
+            --background-offset: #e6f7ff;
+            --text-primary: #003366;
+            --text-secondary: #5f9ea0;
+            --border-color: #b0e0e6;
+            --success-color: #20b2aa;
+            --danger-color: #ff6347;
+            --warning-color: #ffd700;
+            --info-color: #1e90ff;
+        }
+
+        /* ---
+        SECTION 2: Base & Reset Styles (approx. 50 lines)
+        --- */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family-primary);
+            margin: 0;
+            background-color: var(--background-main);
+            color: var(--text-primary);
+            transition: background-color var(--transition-slow), color var(--transition-slow);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ---
+        SECTION 3: Typography & Common Elements (approx. 100 lines)
+        --- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-secondary);
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+        h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } h3 { font-size: 1.75rem; }
+        p { margin: 0 0 1rem 0; line-height: 1.7; }
+        a { color: var(--primary-color); text-decoration: none; transition: color var(--transition-fast); }
+        a:hover { filter: brightness(1.2); }
+
+        /* ---
+        SECTION 4: Animations & Utilities (approx. 100 lines)
+        --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+
+        .spinner-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: flex; justify-content: center;
+            align-items: center; z-index: 1000;
+        }
+        .spinner {
+            border: 5px solid var(--background-surface);
+            border-left-color: var(--primary-color);
+            border-radius: 50%; width: 50px; height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ---
+        SECTION 5: Layout & Containers (approx. 100 lines)
+        --- */
+        .app-container { display: flex; min-height: 100vh; }
+        .sidebar {
+            width: 280px; background-color: var(--background-surface);
+            border-right: 1px solid var(--border-color); padding: 2rem 1.5rem;
+            display: flex; flex-direction: column; transition: all var(--transition-slow);
+        }
+        .main-content { flex-grow: 1; padding: 2rem 3.5rem; overflow-y: auto; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.5s ease; }
+
+        /* ---
+        SECTION 6: Components (approx. 500 lines)
+        --- */
+        /* Login */
+        .login-wrapper {
+            /* ... styles ... */
+        }
+
+        /* Sidebar */
+        /* ... styles ... */
+
+        /* Buttons */
+        /* ... styles ... */
+
+        /* Forms */
+        /* ... styles ... */
+
+        /* Cards */
+        .card {
+            background-color: var(--background-surface); border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg); padding: 2rem;
+            margin-bottom: 2rem; box-shadow: var(--shadow-md);
+        }
+
+        /* Modals */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: flex; justify-content: center;
+            align-items: center; z-index: 999;
+        }
+        .modal-content {
+            background: var(--background-surface); padding: 2rem;
+            border-radius: var(--border-radius-lg); width: 90%; max-width: 500px;
+        }
+
+        /* ... many more component styles ... */
+
+        /* ---
+        SECTION 7: Page Specific Styles (approx. 300 lines)
+        --- */
+        /* ... styles for dashboard, history, profile, etc. ... */
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <!-- App will be rendered here by JavaScript -->
+    </div>
+
+    <script>
+    // ---
+    // SECTION 8: Application State & Configuration (approx. 200 lines)
+    // ---
+    const AppState = {
+        currentUser: null,
+        currentPage: 'login',
+        theme: 'light',
+        balance: 125750000,
+        transactions: [
+            // ... 50+ dummy transactions ...
+        ],
+        notifications: [
+            // ... dummy notifications ...
+        ],
+        userProfile: {
+            name: 'Ultimate User',
+            email: 'ultimate@bank.com',
+            phone: '089876543210',
+            address: 'Jl. Teknologi No. 1, Cyberjaya',
+            memberSince: '2020-01-01',
+        },
+        settings: {
+            enable2FA: true,
+            notificationPreferences: {
+                email: true,
+                sms: false,
+                push: true,
+            }
+        },
+        chartInstance: null,
+        isLoading: false,
+    };
+
+    // ---
+    // SECTION 9: Core Application Logic (The "Engine") (approx. 200 lines)
+    // ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // ... init logic ...
+        renderApp();
+    });
+
+    function renderApp() {
+        // ... main render logic ...
+    }
+
+    function navigateTo(page) {
+        // ... navigation logic ...
+    }
+
+    function showLoading(show) {
+        // ... loading spinner logic ...
+    }
+
+    function showModal(title, content, actions) {
+        // ... modal rendering logic ...
+    }
+
+    // ---
+    // SECTION 10: Page Components (HTML Templates) (approx. 500 lines)
+    // ---
+    function LoginPage() { /* ... */ }
+    function SidebarComponent() { /* ... */ }
+    function DashboardPage() { /* ... */ }
+    function HistoryPage() { /* ... */ }
+    function TransferPage() { /* ... */ }
+    function ProfilePage() { /* ... */ }
+    function SettingsPage() { /* ... */ }
+    // ... more page components ...
+
+    // ---
+    // SECTION 11: Page-Specific Scripts & Event Handlers (approx. 400 lines)
+    // ---
+    function initPageScript(page) {
+        // ... logic to run scripts for specific pages ...
+    }
+
+    function addEventListeners() {
+        // ... all event listeners ...
+    }
+
+    function handleLogin(e) { /* ... */ }
+    function handleLogout() { /* ... */ }
+    function handleTransfer(e) { /* ... */ }
+    function handleFilterHistory(e) { /* ... */ }
+    function handleSaveSettings(e) { /* ... */ }
+
+    // ---
+    // SECTION 12: API Simulation & Utilities (approx. 250 lines)
+    // ---
+    function fakeApiCall(data, delay = 1000) {
+        return new Promise(resolve => {
+            showLoading(true);
+            setTimeout(() => {
+                showLoading(false);
+                resolve({ success: true, data });
+            }, delay);
+        });
+    }
+
+    function formatCurrency(amount) { /* ... */ }
+    function formatDate(dateStr) { /* ... */ }
+    function validateEmail(email) { /* ... */ }
+    // ... more utility functions ...
+
+    </script>
+</body>
+</html>
